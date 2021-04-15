@@ -1,6 +1,10 @@
-function [ difusion ] = difusion( fileName, numMinTrackSteps, STD_r_min)
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
+function [ diffusion_matrix ] = diffusion( fileName, numMinTrackSteps, STD_r_min)
+%if run without output like this 'diffusion( fileName, numMinTrackSteps, STD_r_min)', it saves a matrix variable at the 'fileName' file called diffusion that has 5 colunms
+% 1 Column: Diffusion coeficient in um2/s
+% 2 Column: Error asociated with the Diffusion from the linear MSD fit. 
+% 3 Column: Mean displacement for the particle
+% 4 Column: Standard desviation for the mean displacement
+% 5 Column: Root mean square of the MSD fit to get the Diffusion Coefficient. 
 
 load(fileName, 'ParticleData','Input','ImageStr');
 
@@ -88,22 +92,22 @@ for i=1:nparticles
     end
 end
 
-difusion(:,1:6)=Dfit2(mobile,1:6);
+diffusion(:,1:6)=Dfit2(mobile,1:6);
 diffusion_versus_STDdisplacement(fileSave,Dfit2(mobile,1:6));
 
-filename = sprintf('%s_difusion_%sfr.txt', fileSave,num2str(numMinTrackSteps));
-save(filename, 'difusion', '-ascii')
+filename = sprintf('%s_diffusion_%sfr.txt', fileSave,num2str(numMinTrackSteps));
+save(filename, 'diffusion', '-ascii')
 
 percentil_mobile=(round((size(nonzeros(mobile))/nparticles)*100));
 
-fprintf('\n %2.1f %% of molecules are considered mobiles and are used to compute difusion \n',percentil_mobile);
+fprintf('\n %2.1f %% of molecules are considered mobiles and are used to compute diffusion \n',percentil_mobile);
 
-percentil_mobile=round((size(difusion,1)/nparticles)*100);
-fprintf('Percentage of mobile molecules: %3d.\nTotal number of Molecules: %3d.\nNumber of mobile molecules: %3d.\nConsidering mobile molecules with STD Deltar > %3d.\n', percentil_mobile, nparticles, size(difusion,1),STD_r_min);
-fprintf('Mean Difussion: %1.2f um^2/s.\n', mean(difusion(:,1)));
+percentil_mobile=round((size(diffusion,1)/nparticles)*100);
+fprintf('Percentage of mobile molecules: %3d.\nTotal number of Molecules: %3d.\nNumber of mobile molecules: %3d.\nConsidering mobile molecules with STD Deltar > %3d.\n', percentil_mobile, nparticles, size(diffusion,1),STD_r_min);
+fprintf('Mean Difussion: %1.2f um^2/s.\n', mean(diffusion(:,1)));
 
-save(fileName,'difusion','-append');
+save(fileName,'diffusion','-append');
 
-clear difusion;
+clear diffusion;
 end
 
