@@ -1,11 +1,20 @@
 function [ diffusion_matrix ] = diffusion( fileName, numMinTrackSteps, STD_r_min)
+%% INPUT:
+%fileName, ... %fileName used to save results from SPTAna
+%numMinTrackSteps,... %numMinTrackSteps: minimum numbers of points in a trajectory to be used for MSD calculation Summary of this function goes here
+%STD_r_min  %STD_r_min: minimum displacement for a particle to be considered.
+
+%% OUTPUT: 
+
 %if run without output like this 'diffusion( fileName, numMinTrackSteps, STD_r_min)', it saves a matrix variable at the 'fileName' file called diffusion that has 5 colunms
 % 1 Column: Diffusion coeficient in um2/s
 % 2 Column: Error asociated with the Diffusion from the linear MSD fit. 
 % 3 Column: Mean displacement for the particle
 % 4 Column: Standard desviation for the mean displacement
 % 5 Column: Root mean square of the MSD fit to get the Diffusion Coefficient. 
+% Also prints a txt file, called 'fileName'_diffusion_'numMinTrackSteps'fr.txt with the 5 columns. 
 
+%% Load variables
 load(fileName, 'ParticleData','Input','ImageStr');
 
 
@@ -19,10 +28,14 @@ ParticleDataIdx.minTrack = particle_idx_after(ParticleData,numMinTrackSteps,idx_
 
 moleculeLongTrackDataArray=ParticleDataIdx.minTrack;
 
+%% Creating trajectories
+
 [trajectories] = plot_tracks_v20 (fileSave, moleculeLongTrackDataArray, imSizeX, imSizeY, pixelSize);
 [ tracks_for_msd ] = transform_tracks(trajectories);
 
 nparticles=size(moleculeLongTrackDataArray.coords,1);
+
+%% MSD calculation
 
 msd=cell(nparticles,1);
 Dfit2=zeros(nparticles,5);
