@@ -22,7 +22,7 @@ InputData.Astig=InputData.FWHMx ./ InputData.FWHMy;   %Astigmatism FWHM x / FWHM
 InputData.sigmax=InputData.FWHMx ./ (2*sqrt(2*log(2))) / Input.PixelSize;
 InputData.sigmay=InputData.FWHMy ./ (2*sqrt(2*log(2))) / Input.PixelSize;
 InputData.Intensity = InputData.Amplitud ./ (2*pi().*InputData.sigmax.*InputData.sigmay);
-InputData.SNR=InputData.Intensity ./ InputData.background;
+InputData.SNR=InputData.Amplitud ./ InputData.background;
 
 
 
