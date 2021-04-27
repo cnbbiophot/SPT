@@ -69,7 +69,7 @@ while n ~= 0
         ylim([0 maxI+2000]);
         xlabel('Time (s)','FontSize',20);
         ylabel('Intensity (A/D Counts)','FontSize',20);
-        title(['Intensity vs time for particle ' num2str(n) ' position: ' num2str(particle_data{n,1}(1,10)) 'x' num2str(particle_data{n,1}(1,11))  ],'FontSize',20);
+        title(['Intensity vs time for particle ' num2str(n)],'FontSize',20);
         dim = [.2 .6 .3 .3];
         str = sprintf(' Max Intensity=%.0f \n Min Intensity:%.0f \n Mean Intensity:%.0f(%.0f) \n DeltaT ON = %.0f ms (%.0f frames) \n Mean rapidStorm Bckground = %.f ',maxI,minI,meanI,stdI,deltat,deltafr,meanBck);
         annotation('textbox',dim,'String',str,'FitBoxToText','on','FontSize',20);
