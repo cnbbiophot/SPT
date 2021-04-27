@@ -53,9 +53,9 @@ title(['Intensity for all molecules with long trajectories.'],'FontSize',20)
 xlabel('Intensity (A/D Counts)','FontSize',20);
 ylabel('counts','FontSize',20);
 xlim(axes1,[-10 3500])
-filename = sprintf('plot_Intensity.jpg', fileSave); 
+filename = sprintf('plot_Intensity.jpg'); 
 saveas(fig,filename)
-filename = sprintf('plot_Intensity.fig',fileSave); 
+filename = sprintf('plot_Intensity.fig'); 
 saveas(fig,filename)
 hold off
 end
