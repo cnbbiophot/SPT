@@ -6,6 +6,8 @@ function [ intensityMean ] = mean_intensity(fileName,plotON)
 %Created by: CVS
 %On August 10/2018
 
+warning('off','MATLAB:load:variableNotFound');
+
 load(fileName,'Input','ParticleData_MinTrack');
 
 if ParticleData_MinTrack.numParticlesMinTrack==0
