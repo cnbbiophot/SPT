@@ -19,5 +19,5 @@ inputData.Amplitud = newData1.data(:,4);
 inputData.FWHMx = newData1.data(:,5);
 inputData.FWHMy = newData1.data(:,6);
 inputData.residueFitting = newData1.data(:,7);
-inputData.background = newData1.data(:,8);
+inputData.backgroundrS = newData1.data(:,8);
 end

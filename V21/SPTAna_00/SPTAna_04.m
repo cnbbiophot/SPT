@@ -39,6 +39,10 @@ function [ ParticleData, Tracks] = SPTAna_04(Input,DataFilter)
 
 fprintf(Input.fileID,'\nStep 4 - Tracking Particles.');
 
+if Input.MaxGapClosing<0
+    Input.MaxGapClosing=Inf;
+end
+
 Tracks=struct;
 Tracks.localizationUn=Input.LocalizationRadius;  % uncertainty to be considered for the particle localization in nanometers. 
 fprintf(Input.fileID,'\n           Uncertainty considered for the Particle identification: %3.1f nm.', Tracks.localizationUn);

@@ -53,7 +53,7 @@ if ImageStr.nframes<ImageStr.NumberImages
     inputDataValid.FWHMx = inputData.FWHMx(countsBefore+1:countsFinal,1);
     inputDataValid.FWHMy = inputData.FWHMy(countsBefore+1:countsFinal,1);
     inputDataValid.residueFitting = inputData.residueFitting(countsBefore+1:countsFinal,1);
-    inputDataValid.background = inputData.background(countsBefore+1:countsFinal,1);
+    inputDataValid.backgroundrS = inputData.background(countsBefore+1:countsFinal,1);
     inputDataValid.counts=inputData.counts(ImageStr.initialFr+1:ImageStr.finalFr+1,1:2);
     inputData=inputDataValid;
 end

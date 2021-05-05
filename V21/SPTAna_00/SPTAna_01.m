@@ -33,9 +33,10 @@ fprintf(Input.fileID,'\n               Localization file: %s.', Input.Localizati
 
 [InputData] = import_files(Input.Localizations,Input.Counts,ImageStr);
 Input.totalLoca=numel(InputData.x);
+InputData.background=InputData.backgroundrS-Input.DarkIntensityCamera;
 
 if  (sum(InputData.counts(:,2))~=numel(InputData.frame))
-    msg=['\nERROR: Number of Localizations on %s file is not the same as the number of counts on %s file. Check output files from rapidStorm. ',filecoords,filecounts];
+    msg=['\nERROR: Number of Localizations on %s file is not the same as the number of counts on %s file. Check output files from rapidStorm. ',Input.Localizations,Input.Counts];
     error(msg);
 end
 
@@ -43,7 +44,9 @@ save(Input.Save,'InputData', '-append');
 
 fprintf(Input.fileID,'\n               Total number of Localizations found on input files: %d in %d frames,',numel(InputData.x),ImageStr.nframes);
 fprintf(Input.fileID,'\n                  (around %5.0f localizations/frame).',(numel(InputData.x)./ImageStr.nframes));
+fprintf(Input.fileID,'\n               Camera Dark Intensity: %3.0f ',Input.DarkIntensityCamera);
 fprintf(Input.fileID,'\n         Reading TIF file and Import data - Done!\n');
+
 
 
 end
