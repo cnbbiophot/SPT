@@ -14,7 +14,8 @@ SPTAna('SPTana_test_17_',...  %filename to save results.
     600,...  %minimum value of Intensity for a localization to be considered valid. (A/D counts) 
     3,...    %minimum value of Signal to Noise Ration for a localization to be considered valid.  
     1,...    %maximum frame gap to be closed during particle tracking. (frame) 
-    2,...    %minimum track size for a particle to be considered long track.(frame) 
+    2,... %minimum track size for a particle to be considered long track.(frame) 
+    500,... %DarkIntensity due to camera electronics
     10,...   %initial frame to be analyzed. If omitted from input, Default is the first frame in the tif file.  
     100);    %final frame to be analyzed. If omitted from input, Default is the last frame in the tif file. 
 %To analyze all frames in the TIF file the last two inputs should not be
